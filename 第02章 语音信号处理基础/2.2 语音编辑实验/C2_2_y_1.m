@@ -1,0 +1,30 @@
+%实验要求一：语音信号叠加
+clc
+clear all
+[x,fs]=wavread('C2_2_y.wav');
+s=1:length(x);
+t=s/fs;
+xmax=max(abs(x));
+x=x/xmax;        %归一化
+y=randn(size(x));%产生同x相同长度的随机序列
+ymax=max(abs(y));
+y=y/ymax;
+z=x+y;
+zmax=max(abs(z));
+z=z/zmax;
+figure(1)
+subplot(311)
+plot(t,x);
+xlabel('时间/s');
+ylabel('归一化幅值');
+title('(a)原始信号');
+subplot(312)
+plot(t,y);
+xlabel('时间/s');
+ylabel('归一化幅值');
+title('(b)随机序列');
+subplot(313)
+plot(t,z);
+xlabel('时间/s');
+ylabel('归一化幅值');
+title('(c)线性叠加');
